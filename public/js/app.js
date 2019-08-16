@@ -79648,8 +79648,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _css_Messages_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./css/Messages.css */ "./resources/js/components/css/Messages.css");
 /* harmony import */ var _css_Messages_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_css_Messages_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _img_avatar_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./img/avatar.png */ "./resources/js/components/img/avatar.png");
-/* harmony import */ var _img_avatar_png__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_img_avatar_png__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _img_avatar_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./img/avatar.png */ "./resources/js/components/img/avatar.png");
+/* harmony import */ var _img_avatar_png__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_img_avatar_png__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
@@ -79668,7 +79668,7 @@ __webpack_require__.r(__webpack_exports__);
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, chat.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, chat.message)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "imageHolder"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-      src: _img_avatar_png__WEBPACK_IMPORTED_MODULE_3___default.a,
+      src: _img_avatar_png__WEBPACK_IMPORTED_MODULE_2___default.a,
       className: "img-responsive avatar",
       alt: "logo"
     }))))));
