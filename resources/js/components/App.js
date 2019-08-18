@@ -18,6 +18,16 @@ class App extends Component {
   componentDidMount() {
     const username = "Dan"
     this.setState({ username });
+    const payload = {
+      name: this.state.username,
+    };
+    axios.get('/messages',payload).then((response)=>{
+      console.log(response);
+    })
+    .catch((error)=>{
+      console.log(error);
+    });
+
     const pusher = new Pusher('cb265c4b7d6b311c2fd8', {
       cluster: 'eu',
       encrypted: true
@@ -40,7 +50,8 @@ class App extends Component {
         name: this.state.username,
         message: this.state.text
       };
-      axios.post('/messages', payload).then((response)=>{
+      this.setState({text: ''});
+      axios.post('/message', payload).then((response)=>{
         const data = {
           message: payload.message,
           type: 'user',

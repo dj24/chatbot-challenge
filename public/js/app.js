@@ -80829,6 +80829,14 @@ function (_Component) {
       this.setState({
         username: username
       });
+      var payload = {
+        name: this.state.username
+      };
+      axios.get('/messages', payload).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      });
       var pusher = new pusher_js__WEBPACK_IMPORTED_MODULE_5___default.a('cb265c4b7d6b311c2fd8', {
         cluster: 'eu',
         encrypted: true
@@ -80858,7 +80866,10 @@ function (_Component) {
           name: this.state.username,
           message: this.state.text
         };
-        axios.post('/messages', payload).then(function (response) {
+        this.setState({
+          text: ''
+        });
+        axios.post('/message', payload).then(function (response) {
           var data = {
             message: payload.message,
             type: 'user'

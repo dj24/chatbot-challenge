@@ -29,11 +29,15 @@ class ChatsController extends Controller
   /**
   * Fetch all messages
   *
-  * @return Message
+  * @return Response
   */
-  public function fetchMessages()
+  public function fetchMessages(Request $request)
   {
-    return Message::with('user')->get();
+    $name = $request->input('name');
+    $user = \App\User::firstOrCreate(['name' => $name]);
+    //return Message::with(['user_name' => $name])->get();
+    //return Message::all()->get();
+    return array('name' => 'Steve', 'state' => 'CA');
   }
 
   /**
@@ -47,14 +51,11 @@ class ChatsController extends Controller
     $message = $request->input('message');
     $name = $request->input('name');
     $user = \App\User::firstOrCreate(['name' => $name]);
-
     $output = array(
       'message' => $message,
       'type' => 'user'
     );
-
     $user->messages()->create($output);
-
     event(new MessageEvent($message,$name));
     return $output;
   }
