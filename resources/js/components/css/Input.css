@@ -1,0 +1,17 @@
+input.chat-input,input.chat-input:focus{
+  position:fixed;
+  bottom:1.75em;
+  width:calc(100% - 3.5em);
+  max-width:940px;
+  margin:auto 10px;
+  padding: 1.75em;
+  left: 50%;
+  transform: translateX(-51.2%);
+  border-radius:1.75em;
+  border:0;
+  background:#F4F5FC;
+}
+.input-container{
+  //background: transparent;
+  //background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+}

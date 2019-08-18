@@ -16,12 +16,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    /*
-    window.Echo.channel('my-channel')
-    .listen('my-event', function(data) {
-      alert(JSON.stringify(data));
-    });
-    */
     const username = "Dan"
     this.setState({ username });
     const pusher = new Pusher('cb265c4b7d6b311c2fd8', {
@@ -33,6 +27,7 @@ class App extends Component {
       setTimeout(()=>{
         this.setState({ chats: [...this.state.chats, data], test: '' });
         console.log(this.state.chats);
+        window.scrollTo(0,document.body.scrollHeight);
       }, 200);
     });
     this.handleTextChange = this.handleTextChange.bind(this);
@@ -42,7 +37,7 @@ class App extends Component {
     if (e.keyCode === 13) {
       //enter pressed
       const payload = {
-        username: this.state.username,
+        name: this.state.username,
         message: this.state.text
       };
       axios.post('/messages', payload).then((response)=>{
@@ -51,6 +46,7 @@ class App extends Component {
           type: 'user',
         };
         this.setState({ chats: [...this.state.chats, data], test: '' });
+        window.scrollTo(0,document.body.scrollHeight);
       })
       .catch((error)=>{
         console.log(error);
@@ -68,7 +64,6 @@ class App extends Component {
         <Messages chats={this.state.chats}/>
         <Input
           text={this.state.text}
-          username={this.state.username}
           handleTextChange={this.handleTextChange}
         />
       </div>

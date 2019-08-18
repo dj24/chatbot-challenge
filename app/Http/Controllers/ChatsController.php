@@ -44,18 +44,18 @@ class ChatsController extends Controller
   */
   public function sendMessage(Request $request)
   {
-    // $user = Auth::user();
-    //
-    // $message = $user->messages()->create([
-    //   'message' => $request->input('message')
-    // ]);
     $message = $request->input('message');
-    $obj = array(
-      'time' => time(),
+    $name = $request->input('name');
+    $user = \App\User::firstOrCreate(['name' => $name]);
+
+    $output = array(
       'message' => $message,
       'type' => 'user'
     );
-    event(new MessageEvent($message));
-    return $obj;
+
+    $user->messages()->create($output);
+
+    event(new MessageEvent($message,$name));
+    return $output;
   }
 }
