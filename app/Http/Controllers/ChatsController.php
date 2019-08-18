@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Message;
+
 
 class ChatsController extends Controller
 {
-  use App\Message;
-  use Illuminate\Http\Request;
-  use Illuminate\Support\Facades\Auth;
+
 
   public function __construct()
   {
-    $this->middleware('auth');
+    //$this->middleware('auth');
   }
 
   /**
@@ -43,12 +44,18 @@ class ChatsController extends Controller
   */
   public function sendMessage(Request $request)
   {
-    $user = Auth::user();
-
-    $message = $user->messages()->create([
-      'message' => $request->input('message')
-    ]);
-
-    return ['status' => 'Message Sent!'];
+    // $user = Auth::user();
+    //
+    // $message = $user->messages()->create([
+    //   'message' => $request->input('message')
+    // ]);
+    $message = $request->input('message');
+    $obj = array(
+      'time' => time(),
+      'message' => $message,
+      'type' => 'user'
+    );
+    event(new MessageEvent($message));
+    return $obj;
   }
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Input from './Input'
 import Messages from './Messages'
+import Echo from "laravel-echo"
 import Pusher from 'pusher-js';
 
 class App extends Component {
@@ -15,6 +16,12 @@ class App extends Component {
   }
 
   componentDidMount() {
+    /*
+    window.Echo.channel('my-channel')
+    .listen('my-event', function(data) {
+      alert(JSON.stringify(data));
+    });
+    */
     const username = "Dan"
     this.setState({ username });
     const pusher = new Pusher('cb265c4b7d6b311c2fd8', {
@@ -23,37 +30,47 @@ class App extends Component {
     });
     const channel = pusher.subscribe('chat');
     channel.bind('message', data => {
-      this.setState({ chats: [...this.state.chats, data], test: '' });
+      setTimeout(()=>{
+        this.setState({ chats: [...this.state.chats, data], test: '' });
+        console.log(this.state.chats);
+      }, 200);
     });
     this.handleTextChange = this.handleTextChange.bind(this);
-    console.log(this.state);
   }
 
   handleTextChange(e) {
     if (e.keyCode === 13) {
+      //enter pressed
       const payload = {
         username: this.state.username,
         message: this.state.text
       };
-      axios.post('http://localhost:8000/message', payload);
+      axios.post('/messages', payload).then((response)=>{
+        const data = {
+          message: payload.message,
+          type: 'user',
+        };
+        this.setState({ chats: [...this.state.chats, data], test: '' });
+      })
+      .catch((error)=>{
+        console.log(error);
+      });
     } else {
+      //update state on changed text box
       this.setState({ text: e.target.value });
     }
   }
 
   render() {
+
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React-Pusher Chat</h1>
-        </header>
-        <section>
+        <Messages chats={this.state.chats}/>
         <Input
           text={this.state.text}
           username={this.state.username}
           handleTextChange={this.handleTextChange}
         />
-        </section>
       </div>
     );
   }
