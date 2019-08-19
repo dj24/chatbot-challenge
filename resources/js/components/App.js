@@ -18,11 +18,9 @@ class App extends Component {
   componentDidMount() {
     const username = "Dan"
     this.setState({ username });
-    const payload = {
-      name: this.state.username,
-    };
-    axios.get('/messages',payload).then((response)=>{
-      console.log(response);
+    axios.get('/messages/' + username).then((response)=>{
+      let chats = response.data;
+      this.setState({chats});
     })
     .catch((error)=>{
       console.log(error);

@@ -23,7 +23,7 @@ class MessageEvent implements ShouldBroadcast
       $user = \App\User::firstOrCreate(['name' => $name]);
       $user->messages()->create([
          'message' => $this->message,
-         'type' => 'user'
+         'type' => 'bot'
       ]);
   }
 

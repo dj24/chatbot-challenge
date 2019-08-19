@@ -80829,11 +80829,12 @@ function (_Component) {
       this.setState({
         username: username
       });
-      var payload = {
-        name: this.state.username
-      };
-      axios.get('/messages', payload).then(function (response) {
-        console.log(response);
+      axios.get('/messages/' + username).then(function (response) {
+        var chats = response.data;
+
+        _this2.setState({
+          chats: chats
+        });
       })["catch"](function (error) {
         console.log(error);
       });

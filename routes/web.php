@@ -11,9 +11,9 @@
 |
 */
 
+Route::get('messages/{name}', 'ChatsController@fetchMessages');
+Route::post('message', 'ChatsController@sendMessage');
+
 Route::view('/{path?}', 'app');
 
-Auth::routes();
-
-Route::post('messages', 'ChatsController@fetchMessages');
-Route::post('message', 'ChatsController@sendMessage');
+//Auth::routes();
