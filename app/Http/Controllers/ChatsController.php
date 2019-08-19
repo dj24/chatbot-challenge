@@ -35,6 +35,12 @@ class ChatsController extends Controller
   public function fetchMessages($name)
   {
     $user = \App\User::firstOrCreate(['name' => $name]);
+    $message_count = count($user->messages);
+    if($message_count == 0){
+      $message = "Hi " . $name .", welcome to Meeting Bot. What would you like to do?";
+      event(new MessageEvent($message,$name));
+    }
+    event(new OptionsEvent(["Option 1","Option 2","Option 3"]));
     return $user->messages;
   }
 
@@ -55,6 +61,7 @@ class ChatsController extends Controller
       'type' => 'user'
     );
     $user->messages()->create($output);
+    event(new OptionsEvent(["Option 1","Option 2","Option 3"]));
     event(new MessageEvent($message,$name));
     return $output;
   }

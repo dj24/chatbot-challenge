@@ -1,0 +1,46 @@
+#options{
+  display:flex;
+  position:fixed;
+  bottom:7em;
+  width:calc(100% - 3.5em);
+  max-width:940px;
+  margin:auto 10px;
+  left: 50%;
+  transform: translateX(-51.2%);
+  line-height: 0em;
+  justify-content: center;
+}
+
+@-webkit-keyframes message{
+  0% {
+    transform: translateY(30px);
+    opacity:0;
+  }
+  100% {
+    transform:  translateY(-0px);
+    opacity:1;
+   }
+}
+
+#options > div{
+  transition:all ease 0.6s;
+  transform: translateY(30px);
+  opacity: 0;
+  animation-name: message;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  animation-duration: 0.6s;
+  padding: 1.75em;
+  background:#09A3E2;
+  color:#fff;
+  margin:10px;
+  border-radius:1.75em;
+  cursor: pointer;
+}
+
+#options > div:nth-child(2){
+  animation-delay: 0.1s;
+}
+#options > div:nth-child(3){
+  animation-delay: 0.2s;
+}

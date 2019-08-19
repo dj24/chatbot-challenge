@@ -6404,6 +6404,25 @@ exports.push([module.i, "body{\n  font-family: 'Montserrat', sans-serif;\n  back
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/css/Options.css":
+/*!*********************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/components/css/Options.css ***!
+  \*********************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "#options{\n  display:flex;\n  position:fixed;\n  bottom:7em;\n  width:calc(100% - 3.5em);\n  max-width:940px;\n  margin:auto 10px;\n  left: 50%;\n  transform: translateX(-51.2%);\n  line-height: 0em;\n  justify-content: center;\n}\n\n@-webkit-keyframes message{\n  0% {\n    transform: translateY(30px);\n    opacity:0;\n  }\n  100% {\n    transform:  translateY(-0px);\n    opacity:1;\n   }\n}\n\n#options > div{\n  transition:all ease 0.6s;\n  transform: translateY(30px);\n  opacity: 0;\n  -webkit-animation-name: message;\n          animation-name: message;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);\n          animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);\n  -webkit-animation-duration: 0.6s;\n          animation-duration: 0.6s;\n  padding: 1.75em;\n  background:#09A3E2;\n  color:#fff;\n  margin:10px;\n  border-radius:1.75em;\n  cursor: pointer;\n}\n\n#options > div:nth-child(2){\n  -webkit-animation-delay: 0.1s;\n          animation-delay: 0.1s;\n}\n#options > div:nth-child(3){\n  -webkit-animation-delay: 0.2s;\n          animation-delay: 0.2s;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/css/Typing.css":
 /*!********************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/components/css/Typing.css ***!
@@ -80765,9 +80784,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Input */ "./resources/js/components/Input.js");
 /* harmony import */ var _Messages__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Messages */ "./resources/js/components/Messages.js");
-/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
-/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
-/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(pusher_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _Options__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Options */ "./resources/js/components/Options.js");
+/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
+/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(pusher_js__WEBPACK_IMPORTED_MODULE_6__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
@@ -80801,6 +80821,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var App =
 /*#__PURE__*/
 function (_Component) {
@@ -80815,30 +80836,18 @@ function (_Component) {
     _this.state = {
       text: '',
       username: '',
-      chats: []
+      chats: [],
+      options: []
     };
     return _this;
   }
 
   _createClass(App, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
+    key: "setupPusher",
+    value: function setupPusher() {
       var _this2 = this;
 
-      var username = "Dan";
-      this.setState({
-        username: username
-      });
-      axios.get('/messages/' + username).then(function (response) {
-        var chats = response.data;
-
-        _this2.setState({
-          chats: chats
-        });
-      })["catch"](function (error) {
-        console.log(error);
-      });
-      var pusher = new pusher_js__WEBPACK_IMPORTED_MODULE_5___default.a('cb265c4b7d6b311c2fd8', {
+      var pusher = new pusher_js__WEBPACK_IMPORTED_MODULE_6___default.a('cb265c4b7d6b311c2fd8', {
         cluster: 'eu',
         encrypted: true
       });
@@ -80850,16 +80859,77 @@ function (_Component) {
             test: ''
           });
 
-          console.log(_this2.state.chats);
           window.scrollTo(0, document.body.scrollHeight);
         }, 200);
       });
+      channel.bind('options', function (data) {
+        _this2.setState({
+          options: data.options
+        });
+
+        console.log(_this2.state.options[0]);
+      });
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this3 = this;
+
+      this.setupPusher();
+      var username = prompt("Please enter your username", "Dan");
+      this.setState({
+        username: username
+      });
+      axios.get('/messages/' + username).then(function (response) {
+        var chats = response.data;
+
+        _this3.setState({
+          chats: chats
+        });
+      })["catch"](function (error) {
+        console.log(error);
+      });
       this.handleTextChange = this.handleTextChange.bind(this);
+      this.handleOptionClick = this.handleOptionClick.bind(this);
+    }
+  }, {
+    key: "handleOptionClick",
+    value: function handleOptionClick(e) {
+      var _this4 = this;
+
+      var message = e.target.innerText;
+      console.log(message);
+      var payload = {
+        name: this.state.username,
+        message: message
+      };
+      this.setState({
+        text: ''
+      });
+      axios.post('/message', payload).then(function (response) {
+        var data = {
+          message: payload.message,
+          type: 'user'
+        };
+
+        _this4.setState({
+          chats: [].concat(_toConsumableArray(_this4.state.chats), [data]),
+          test: ''
+        });
+
+        _this4.setState({
+          options: []
+        });
+
+        window.scrollTo(0, document.body.scrollHeight);
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   }, {
     key: "handleTextChange",
     value: function handleTextChange(e) {
-      var _this3 = this;
+      var _this5 = this;
 
       if (e.keyCode === 13) {
         //enter pressed
@@ -80876,14 +80946,17 @@ function (_Component) {
             type: 'user'
           };
 
-          _this3.setState({
-            chats: [].concat(_toConsumableArray(_this3.state.chats), [data]),
+          _this5.setState({
+            chats: [].concat(_toConsumableArray(_this5.state.chats), [data]),
             test: ''
           });
 
           window.scrollTo(0, document.body.scrollHeight);
         })["catch"](function (error) {
           console.log(error);
+        });
+        this.setState({
+          options: []
         });
       } else {
         //update state on changed text box
@@ -80899,6 +80972,9 @@ function (_Component) {
         className: "App"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Messages__WEBPACK_IMPORTED_MODULE_3__["default"], {
         chats: this.state.chats
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Options__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        handleOptionClick: this.handleOptionClick,
+        options: this.state.options
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
         text: this.state.text,
         handleTextChange: this.handleTextChange
@@ -80988,6 +81064,36 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Options.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/Options.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _css_Options_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./css/Options.css */ "./resources/js/components/css/Options.css");
+/* harmony import */ var _css_Options_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_css_Options_css__WEBPACK_IMPORTED_MODULE_1__);
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
+  var options = _ref.options,
+      handleOptionClick = _ref.handleOptionClick;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "options"
+  }, options.map(function (option, i) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      key: i,
+      onClick: handleOptionClick
+    }, option);
+  }));
+});
+
+/***/ }),
+
 /***/ "./resources/js/components/Typing.js":
 /*!*******************************************!*\
   !*** ./resources/js/components/Typing.js ***!
@@ -81056,6 +81162,36 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/postcss-loader/src??ref--6-2!./Messages.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/css/Messages.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./resources/js/components/css/Options.css":
+/*!*************************************************!*\
+  !*** ./resources/js/components/css/Options.css ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/postcss-loader/src??ref--6-2!./Options.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/css/Options.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 

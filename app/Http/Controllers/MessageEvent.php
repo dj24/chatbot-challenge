@@ -17,7 +17,7 @@ class MessageEvent implements ShouldBroadcast
 
   public function __construct($message,$name)
   {
-      $this->message = "BOT HAS RECIEVED: " . $message;
+      $this->message = $message;
       $this->time = time();
       $this->type = "bot";
       $user = \App\User::firstOrCreate(['name' => $name]);
@@ -25,7 +25,6 @@ class MessageEvent implements ShouldBroadcast
          'message' => $this->message,
          'type' => 'bot'
       ]);
-  }
 
   public function broadcastOn()
   {
