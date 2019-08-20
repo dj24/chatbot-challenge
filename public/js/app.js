@@ -6397,7 +6397,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap);", ""]);
 
 // module
-exports.push([module.i, "body{\n  font-family: 'Montserrat', sans-serif;\n  background:#fff;\n}\n\n#chat{\n  width:100%;\n  max-width:960px;\n  margin:auto;\n  display:flex;\n  flex-direction:column;\n  line-height:1.75em;\n  font-size:1em;\n  margin-bottom:7em;\n}\n\n@-webkit-keyframes message{\n  0% {\n    transform: scale(1.05)  translateY(30px);\n    opacity:0;\n  }\n  100% {\n    transform: scale(1) translateY(-0px);\n    opacity:1;\n   }\n}\n\n#chat .user,#chat .bot{\n  overflow-wrap: break-word;\n  opacity:0;\n  padding:1.75em;\n  background:white;\n  margin:15px;\n  max-width:50%;\n  border-radius:12px;\n  -webkit-animation-name: message;\n          animation-name: message;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);\n          animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);\n  -webkit-animation-duration: 0.6s;\n          animation-duration: 0.6s;\n}\n#chat .user{\n  align-self:flex-end;\n  background:#09A3E2;\n  border-bottom-right-radius:0;\n  color:#fff;\n}\n#chat .bot{\n  align-self:flex-start;\n  background:#F4F5FC;\n  border-bottom-left-radius:0;\n  color:#555E6D;\n}\n", ""]);
+exports.push([module.i, "body{\n  font-family: 'Montserrat', sans-serif;\n  background:#fff;\n}\n\n#chat{\n  width:100%;\n  max-width:960px;\n  margin:auto;\n  display:flex;\n  flex-direction:column;\n  line-height:1.75em;\n  font-size:1em;\n  margin-bottom:7em;\n}\n\n@-webkit-keyframes message{\n  0% {\n    transform: scale(1.05)  translateY(30px);\n    opacity:0;\n  }\n  100% {\n    transform: scale(1) translateY(-0px);\n    opacity:1;\n   }\n}\n\n#chat .user,#chat .bot{\n  overflow-wrap: break-word;\n  opacity:0;\n  padding:1.75em;\n  background:white;\n  margin:15px;\n  max-width:50%;\n  border-radius:12px;\n  -webkit-animation-name: message;\n          animation-name: message;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);\n          animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);\n  -webkit-animation-duration: 0.3s;\n          animation-duration: 0.3s;\n}\n#chat .user{\n  align-self:flex-end;\n  background:#09A3E2;\n  border-bottom-right-radius:0;\n  color:#fff;\n}\n#chat .bot{\n  align-self:flex-start;\n  background:#F4F5FC;\n  border-bottom-left-radius:0;\n  color:#555E6D;\n}\n", ""]);
 
 // exports
 
@@ -80785,9 +80785,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Input */ "./resources/js/components/Input.js");
 /* harmony import */ var _Messages__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Messages */ "./resources/js/components/Messages.js");
 /* harmony import */ var _Options__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Options */ "./resources/js/components/Options.js");
-/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
-/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
-/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(pusher_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _Typing__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Typing */ "./resources/js/components/Typing.js");
+/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
+/* harmony import */ var pusher_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(pusher_js__WEBPACK_IMPORTED_MODULE_7__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
@@ -80822,6 +80823,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var App =
 /*#__PURE__*/
 function (_Component) {
@@ -80836,8 +80838,11 @@ function (_Component) {
     _this.state = {
       text: '',
       username: '',
-      chats: [],
-      options: []
+      chats: [{
+        "type": "loading"
+      }],
+      options: [],
+      loading: true
     };
     return _this;
   }
@@ -80847,7 +80852,7 @@ function (_Component) {
     value: function setupPusher() {
       var _this2 = this;
 
-      var pusher = new pusher_js__WEBPACK_IMPORTED_MODULE_6___default.a('cb265c4b7d6b311c2fd8', {
+      var pusher = new pusher_js__WEBPACK_IMPORTED_MODULE_7___default.a('cb265c4b7d6b311c2fd8', {
         cluster: 'eu',
         encrypted: true
       });
@@ -80863,6 +80868,10 @@ function (_Component) {
         }, 200);
       });
       channel.bind('options', function (data) {
+        _this2.setState({
+          options: []
+        });
+
         _this2.setState({
           options: data.options
         });
@@ -80886,6 +80895,12 @@ function (_Component) {
         _this3.setState({
           chats: chats
         });
+
+        console.log("done loading");
+
+        _this3.setState({
+          loading: false
+        });
       })["catch"](function (error) {
         console.log(error);
       });
@@ -80898,28 +80913,35 @@ function (_Component) {
       var _this4 = this;
 
       var message = e.target.innerText;
+      var options = this.state.options;
       console.log(message);
       var payload = {
         name: this.state.username,
         message: message
       };
+      var newChat = {
+        message: payload.message,
+        type: 'user'
+      };
       this.setState({
         text: ''
       });
+      this.setState({
+        loading: true
+      });
+      this.setState({
+        chats: [].concat(_toConsumableArray(this.state.chats), [newChat])
+      });
       axios.post('/message', payload).then(function (response) {
-        var data = {
-          message: payload.message,
-          type: 'user'
-        };
-
         _this4.setState({
-          chats: [].concat(_toConsumableArray(_this4.state.chats), [data]),
-          test: ''
+          loading: false
         });
 
-        _this4.setState({
-          options: []
-        });
+        if (_this4.state.options === options) {
+          _this4.setState({
+            options: []
+          });
+        }
 
         window.scrollTo(0, document.body.scrollHeight);
       })["catch"](function (error) {
@@ -80937,18 +80959,22 @@ function (_Component) {
           name: this.state.username,
           message: this.state.text
         };
+        var newChat = {
+          message: payload.message,
+          type: 'user'
+        };
         this.setState({
           text: ''
         });
+        this.setState({
+          loading: true
+        });
+        this.setState({
+          chats: [].concat(_toConsumableArray(this.state.chats), [newChat])
+        });
         axios.post('/message', payload).then(function (response) {
-          var data = {
-            message: payload.message,
-            type: 'user'
-          };
-
           _this5.setState({
-            chats: [].concat(_toConsumableArray(_this5.state.chats), [data]),
-            test: ''
+            loading: false
           });
 
           window.scrollTo(0, document.body.scrollHeight);
@@ -80971,6 +80997,7 @@ function (_Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "App"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Messages__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        loading: this.state.loading,
         chats: this.state.chats
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Options__WEBPACK_IMPORTED_MODULE_4__["default"], {
         handleOptionClick: this.handleOptionClick,
@@ -81042,24 +81069,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
-  var chats = _ref.chats;
+  var chats = _ref.chats,
+      loading = _ref.loading;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "chat"
   }, chats.map(function (chat) {
     if (chat.type === 'bot') {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         "class": "bot"
       }, chat.message));
     } else if (chat.type === 'user') {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         "class": "user"
       }, chat.message);
-    } else if (chat.type === 'loading') {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "class": "bot"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Typing__WEBPACK_IMPORTED_MODULE_1__["default"], null));
     }
-  }));
+  }), loading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "class": "bot"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Typing__WEBPACK_IMPORTED_MODULE_1__["default"], null)) : "");
 });
 
 /***/ }),
