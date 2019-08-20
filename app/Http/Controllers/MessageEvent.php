@@ -25,7 +25,7 @@ class MessageEvent implements ShouldBroadcast
          'message' => $this->message,
          'type' => 'bot'
       ]);
-
+}
   public function broadcastOn()
   {
       return ['chat'];

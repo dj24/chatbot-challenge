@@ -9,7 +9,16 @@ use App\Message;
 
 class ChatsController extends Controller
 {
-
+  private $book = array(
+    "message" => "What time?"
+  );
+  public $flow = array(
+    "message" => "Welcome to Meeting Bot. What would you like to do?",
+    "options" => array(
+      "Book" => "",
+      "View" => ""
+    )
+  );
 
   public function __construct()
   {
@@ -40,8 +49,16 @@ class ChatsController extends Controller
       $message = "Hi " . $name .", welcome to Meeting Bot. What would you like to do?";
       event(new MessageEvent($message,$name));
     }
-    event(new OptionsEvent(["Option 1","Option 2","Option 3"]));
+    $options = [];
+    foreach ($this->flow as $key => $value){
+      $options[] = $key;
+    }
+    event(new OptionsEvent($options));
     return $user->messages;
+    // return array(
+    //   'message' => "hello world",
+    //   'type' => 'bot'
+    // );
   }
 
   /**
