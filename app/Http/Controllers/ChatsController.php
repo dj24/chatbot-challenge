@@ -19,12 +19,9 @@ class ChatsController extends Controller
       "Book a room" => array(
         "message" => "Which room?",
         "options" => array("Boardroom","Meeting Room A","Meeting Room B"),
-        "next" => array(
-          "message" => "What time between 9am and 5pm?",
-          "next" => "For how many hours?"
-        )
+        "next" => "What time?"
       ),
-      "View my bookings" => ""
+      "View bookings" => ""
     ),
     "error" => "I'm not sure what you would like me to do"
   );
@@ -101,6 +98,42 @@ class ChatsController extends Controller
         ->where('type','user')
         ->last()['message'];
   }
+
+  /**
+  * Interpret time string
+  *
+  * @param  $message
+  * @return string
+  */
+  private function interpretTime($user,$message){
+    $hour = date_parse($message)['hour'];
+    error_log(gettype($hour));
+    error_log($hour);
+    if(!empty($hour)){
+      $room = "Boardroom";
+      if($hour < 13){
+        $suffix = "am";
+      }
+      else{
+        $hour -= 12;
+        $suffix = "pm";
+      }
+      $time_str = $hour . $suffix
+      $booking = array(
+        'time' => $time_str,
+        'room' => $room
+      );
+      $user->bookings()->create($booking);
+      $output = "Congrats! You have booked " . $room . " for " . $time_str;
+      $output .= ". Is there anything else?";
+      return $output;
+    }
+    else{
+      return "Sorry, please try a different format";
+    }
+
+  }
+
   /**
   * Interpret user message and return
   *
@@ -113,6 +146,10 @@ class ChatsController extends Controller
     $user = \App\User::firstOrCreate(['name' => $name]);
     $last = $this->getLastUserMessage($user);
     $current_options = $this->flow['options'];
+
+    //TESTING
+    return $this->interpretTime($user,$message);
+
     //1st level traversal
     foreach($current_options as $key => $value){
       if($key == $message){
@@ -131,26 +168,19 @@ class ChatsController extends Controller
       if(isset($option['options'])){
         foreach($option['options'] as $suboption){
           if($suboption == $message && isset($option['next'])){
-            if(isset($option['next']['message'])){
-              return $option['next']['message'];
-            }
-            else if(isset($option['next'])){
+            if(isset($option['next'])){
               return $option['next'];
             }
+          }
+          else if($this->getLastBotMessage($user) == $option['next']){
+            return $this->interpretTime($suer,$message);
           }
         }
       }
     }
-    //3rd level traversal
-    foreach($current_options as $option){
-      error_log("LAST MSG: " . $this->getLastBotMessage($user));
-      //error_log("LAST MSG: " . $this->getLastBotMessage($user));
-      if(isset($option['next']['next']) && $this->getLastBotMessage($user) == $option['next']){
-        return $option['next']['next'];
-      }
-    }
     return $this->flow['error'];
   }
+
   /**
   * Process incoming user message
   *

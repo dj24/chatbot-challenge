@@ -21,6 +21,7 @@ class MessageEvent implements ShouldBroadcast
       $this->time = time();
       $this->type = "bot";
       $user = \App\User::firstOrCreate(['name' => $name]);
+
       $user->messages()->create([
          'message' => $this->message,
          'type' => 'bot'

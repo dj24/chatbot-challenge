@@ -52,3 +52,15 @@ body{
   border-bottom-left-radius:0;
   color:#555E6D;
 }
+.bot-message{
+  display: flex;
+  align-items: flex-end;
+}
+.bot-message img{
+  animation-name: message;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  animation-duration: 0.3s;
+  max-width:96px;
+  width:20vw;
+}

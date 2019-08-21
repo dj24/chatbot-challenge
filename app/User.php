@@ -25,4 +25,13 @@ class User extends Model
     return $this->hasMany(Message::class);
   }
 
+  /**
+   * A user can have many bookings
+   *
+   * @return \Illuminate\Database\Eloquent\Relations\HasMany
+   */
+  public function bookings()
+  {
+    return $this->hasMany(Booking::class);
+  }
 }

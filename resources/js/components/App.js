@@ -71,12 +71,12 @@ class App extends Component {
     this.setState({text: ''});
     this.setState({loading:true});
     this.setState({ chats: [...this.state.chats, newChat]});
+    window.scrollTo(0,document.body.scrollHeight);
     axios.post('/message', payload).then((response)=>{
       this.setState({loading:false});
       if(this.state.options === options){
         this.setState({ options: []});
       }
-      window.scrollTo(0,document.body.scrollHeight);
     })
     .catch((error)=>{
       console.log(error);
@@ -97,9 +97,9 @@ class App extends Component {
       this.setState({text: ''});
       this.setState({loading:true});
       this.setState({ chats: [...this.state.chats, newChat]});
+      window.scrollTo(0,document.body.scrollHeight);
       axios.post('/message', payload).then((response)=>{
         this.setState({loading:false});
-        window.scrollTo(0,document.body.scrollHeight);
       })
       .catch((error)=>{
         console.log(error);

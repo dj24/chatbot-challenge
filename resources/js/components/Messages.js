@@ -3,13 +3,18 @@ import Typing from './Typing';
 import "./css/Messages.css";
 import avatar from "./img/avatar.png";
 
+let style= {
+
+}
+
  export default ({ chats,loading }) => (
    <div id="chat">
      {chats.map(chat => {
        if(chat.type === 'bot'){
          return (
-           <div>
-             <div class="bot">{chat.message}</div>
+           <div className="bot-message">
+              <img src={avatar}/>
+              <div class="bot">{chat.message}</div>
            </div>
 
          );
@@ -20,6 +25,11 @@ import avatar from "./img/avatar.png";
          );
        }
      })}
-     { loading ? <div class="bot"><Typing/></div> : "" }
+     { loading ? (
+       <div className="bot-message">
+          <img src={avatar}/>
+          <div class="bot"><Typing/></div>
+       </div>
+     ) : "" }
    </div>
  );
