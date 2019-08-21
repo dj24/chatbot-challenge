@@ -13,7 +13,7 @@ body{
   flex-direction:column;
   line-height:1.75em;
   font-size:1em;
-  margin-bottom:7em;
+  margin-bottom:14em;
 }
 
 @-webkit-keyframes message{

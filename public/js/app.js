@@ -6397,7 +6397,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap);", ""]);
 
 // module
-exports.push([module.i, "body{\n  font-family: 'Montserrat', sans-serif;\n  background:#fff;\n}\n\n#chat{\n  width:100%;\n  max-width:960px;\n  margin:auto;\n  display:flex;\n  flex-direction:column;\n  line-height:1.75em;\n  font-size:1em;\n  margin-bottom:7em;\n}\n\n@-webkit-keyframes message{\n  0% {\n    transform: scale(1.05)  translateY(30px);\n    opacity:0;\n  }\n  100% {\n    transform: scale(1) translateY(-0px);\n    opacity:1;\n   }\n}\n\n#chat .user,#chat .bot{\n  overflow-wrap: break-word;\n  opacity:0;\n  padding:1.75em;\n  background:white;\n  margin:15px;\n  max-width:50%;\n  border-radius:12px;\n  -webkit-animation-name: message;\n          animation-name: message;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);\n          animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);\n  -webkit-animation-duration: 0.3s;\n          animation-duration: 0.3s;\n}\n#chat .user{\n  align-self:flex-end;\n  background:#09A3E2;\n  border-bottom-right-radius:0;\n  color:#fff;\n}\n#chat .bot{\n  align-self:flex-start;\n  background:#F4F5FC;\n  border-bottom-left-radius:0;\n  color:#555E6D;\n}\n.bot-message{\n  display: flex;\n  align-items: flex-end;\n}\n.bot-message img{\n  -webkit-animation-name: message;\n          animation-name: message;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);\n          animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);\n  -webkit-animation-duration: 0.3s;\n          animation-duration: 0.3s;\n  max-width:96px;\n  width:20vw;\n}\n", ""]);
+exports.push([module.i, "body{\n  font-family: 'Montserrat', sans-serif;\n  background:#fff;\n}\n\n#chat{\n  width:100%;\n  max-width:960px;\n  margin:auto;\n  display:flex;\n  flex-direction:column;\n  line-height:1.75em;\n  font-size:1em;\n  margin-bottom:14em;\n}\n\n@-webkit-keyframes message{\n  0% {\n    transform: scale(1.05)  translateY(30px);\n    opacity:0;\n  }\n  100% {\n    transform: scale(1) translateY(-0px);\n    opacity:1;\n   }\n}\n\n#chat .user,#chat .bot{\n  overflow-wrap: break-word;\n  opacity:0;\n  padding:1.75em;\n  background:white;\n  margin:15px;\n  max-width:50%;\n  border-radius:12px;\n  -webkit-animation-name: message;\n          animation-name: message;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);\n          animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);\n  -webkit-animation-duration: 0.3s;\n          animation-duration: 0.3s;\n}\n#chat .user{\n  align-self:flex-end;\n  background:#09A3E2;\n  border-bottom-right-radius:0;\n  color:#fff;\n}\n#chat .bot{\n  align-self:flex-start;\n  background:#F4F5FC;\n  border-bottom-left-radius:0;\n  color:#555E6D;\n}\n.bot-message{\n  display: flex;\n  align-items: flex-end;\n}\n.bot-message img{\n  -webkit-animation-name: message;\n          animation-name: message;\n  -webkit-animation-fill-mode: forwards;\n          animation-fill-mode: forwards;\n  -webkit-animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);\n          animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);\n  -webkit-animation-duration: 0.3s;\n          animation-duration: 0.3s;\n  max-width:96px;\n  width:20vw;\n}\n", ""]);
 
 // exports
 
@@ -80944,6 +80944,7 @@ function (_Component) {
           });
         }
       })["catch"](function (error) {
+        alert(error);
         console.log(error);
       });
     }
@@ -80977,6 +80978,7 @@ function (_Component) {
             loading: false
           });
         })["catch"](function (error) {
+          alert(error);
           console.log(error);
         });
         this.setState({

@@ -79,6 +79,7 @@ class App extends Component {
       }
     })
     .catch((error)=>{
+      alert(error);
       console.log(error);
     });
   }
@@ -102,6 +103,7 @@ class App extends Component {
         this.setState({loading:false});
       })
       .catch((error)=>{
+        alert(error);
         console.log(error);
       });
       this.setState({ options: []});

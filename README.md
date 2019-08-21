@@ -22,4 +22,12 @@ PUSHER_APP_CLUSTER=xx
 php artisan serve
 ```
 
+## Usage
+- The idea behind the app is to provide a meeting scheduling tool
+- A user is identified on the name that they enter upon loading the page (messages are also saved per user)
+- If you try to make a booking for existing book, the bot will tell the user who has booked it, and ask for a different time
+- in order to clear all messages and bookings to reset, send "clear db" at any time
+
 ## Tests
+
+- Tests can be run by using the phpunit command
